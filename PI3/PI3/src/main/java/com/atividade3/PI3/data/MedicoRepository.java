@@ -4,10 +4,9 @@
  */
 package com.atividade3.PI3.data;
 
-/**
- *
- * @author Pichau
- */
-public class MedicoRepository {
-    
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository; 
+
+@Repository
+public interface MedicoRepository extends JpaRepository<MedicoEntity, Integer>{
 }

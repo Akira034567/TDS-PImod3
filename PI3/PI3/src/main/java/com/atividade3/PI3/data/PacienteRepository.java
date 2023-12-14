@@ -4,10 +4,13 @@
  */
 package com.atividade3.PI3.data;
 
-/**
- *
- * @author Pichau
- */
-public class PacienteRepository {
+import com.atividade3.PI3.Model.Paciente;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository; 
+
+@Repository
+public interface PacienteRepository extends JpaRepository<PacienteEntity, Integer>{
     
+    List<Paciente> findByMedicoId(Integer id);
 }

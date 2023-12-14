@@ -4,10 +4,13 @@
  */
 package com.atividade3.PI3.data;
 
-/**
- *
- * @author Pichau
- */
-public class LembreteRepository {
+import com.atividade3.PI3.Model.Lembrete;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository; 
+
+@Repository
+public interface LembreteRepository extends JpaRepository<LembreteEntity, Integer>{
     
+    List<Lembrete> findByPacienteId(Integer id);
 }

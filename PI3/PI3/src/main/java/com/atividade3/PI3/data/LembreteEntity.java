@@ -4,10 +4,29 @@
  */
 package com.atividade3.PI3.data;
 
-/**
- *
- * @author Pichau
- */
+import com.atividade3.PI3.Model.Paciente;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+
+@Data 
+@Entity 
+@Table(name="Lembrete") 
 public class LembreteEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     
-}
+    @NotBlank(message="Descrição obrigatória") 
+    String descricao;
+    
+    @NotBlank(message="Data e hora obrigatórias") 
+    String dataHora;
+    
+    Boolean realizado;
+    Paciente paciente;
+} 
