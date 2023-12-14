@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <title>Atualização de Lembretes</title> 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="../static/css/css.css" media="screen" />
+    </head> 
+    <body> 
+        <div class="container"> 
+            <h1>Atualização de Lembretes</h1>
+            <hr> 
+            <h2>Atualizar</h2>
+            <form action="#" th:action="@{/atualizarLembrete}" th:object="${lembrete}" method="POST"> 
+                <input type="text" th:field="*{descricao}" placeholder="Insira a descrição" class="form-control mb-4 col-4">
+                <input type="text" th:field="*{dataHora}" placeholder="Insira a data e hora" class="form-control mb-4 col-4">
+                <label for="Realizado" style="float: left">Lembrete Realizado:</label>
+                <p>
+                <input type="checkbox" th:field="*{Realizado}" placeholder="Insira o gênero" class="form-control mb-4 col-4" style="float: left; width: 5%;">
+                </p>
+                <input type="hidden" th:field="*{id}"/> 
+                <input type="hidden" th:field="*{idPaciente}"/>
+                <br>
+                <button type="submit" class="btn btn-info col-2" style="float: left;">Atualizar</button> 
+            </form>         
+            <hr> 
+            <a th:href="@{/}">Retornar</a> 
+        </div> 
+    </body> 
+</html> 

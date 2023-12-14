@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <title>Login</title> 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="../static/css/css.css" media="screen" />
+    </head> 
+    <body> 
+        <div class="container"> 
+            <h1 style="text-align: center; margin-top: 5%;">Faça login para sua conta</h1>
+            <hr>
+            <form action="#" th:action="@{/login}" th:object="${usuario}" method="POST" style="width: 940px; margin: 40px auto;">
+    
+                <label for="tipoLogin" style="margin-left: 32%;">Tipo de login:</label>
+                <select name="tipoLogin" id="tipoLogin" class="form-control mt-4 col-4" style="margin-left: 32%;">
+                    <option value="medico">Médico</option> 
+                    <option value="paciente">Paciente</option> 
+                </select>
+                <input type="text" name="usuarioLogin" id="usuarioLogin" placeholder="Login" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <input type="text" name="usuarioSenha" id="usuarioSenha" placeholder="Senha" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+
+                <button id="limparForm" class="btn btn-danger mt-4" style="text-align: center; margin-left: 32%;">Apagar</button>
+                <button type="submit" class="btn btn-info mt-4" style="text-align: center; margin-left: 18%;">Login</button>
+            </form> <!-- Pegar o valor do select e ver se é médico ou paciente e redirecionar para a parte certa no controller (mesma coisa no botãozinho ali embaixo), também foi a mesma coisa q eu fiz na parte de cookies pra saber se ele era claro ou escuro, e tem q ter uma parte de validação para primeiro procurar o nome de usuário no banco de dados, ai se achar a gente bate com a senha (usando equlas), ai se for a gente redireciona para a área certa e ai passa o id do médico ou paciente na model (quando for vascular a lista já chamar uma variável com esse id) e então abre a página certa-->
+
+            <hr> 
+
+                <a th:href="@{/}" style="padding-inline: 3%; text-align: center; margin-left: 35%;">Esqueceu a senha/Fazer cadastro</a>
+
+        </div> 
+
+
+
+    </body>
+</html>

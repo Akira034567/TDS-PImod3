@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <title>Tela de erro</title> 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="../static/css/css.css" media="screen" />
+    </head> 
+    <body> 
+        <div class="container"> 
+
+
+            <h1 style="text-align: center; margin-top: 5%;">Erro na autenticação</h1>
+            <br>
+            <img src="erro.png" alt="erroLogin" class="img" style="margin-left: 37%; margin-top: 5%;"/>
+            <br>
+            <p style="text-align: center; margin-top: 5%;">Tente de novo mais tarde ou verifique sua credencial</p>
+            <a th:href="@{/}"><button class="btn btn-info mt-4" style="padding-inline: 5%; text-align: center; margin-left: 35%;">Tentar novamente</button></a>
+           
+
+        </div> 
+    </body>
+</html>

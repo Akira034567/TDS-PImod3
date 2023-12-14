@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+
+<head>
+           
+    <meta charset="utf-8">
+            <title>Lembretes</title>
+           
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/css/css.css" media="screen" />
+       
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="margin-top: 5%;">Lembretes:</h1>
+
+        <table style="text-align: center; margin-left: 32%;">
+            <thead>
+                <tr>
+                    <th style="font-size: larger;">ID</th>
+                    <th style="font-size: larger;">Lembrete</th>
+                    <th style="font-size: larger;">Data</th>
+                    <th style="font-size: larger;">Realizado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="lembrete : ${lembretes}">
+
+                    <span th:if="lembrete.idPaciente == ${paciente.id}"> <!-- Passar o paciente (e seu id) que efetuou o login pela model na hora do Get da página. Ainda tem q ver se esse jeito de usar o th:if funciona-->
+                    
+                    <td th:text="${lembrete.id}"></td>
+                    <td th:text="${lembrete.descricao}"></td>
+                    <td th:text="${lembrete.dataHora}"></td>
+                    <td> <!-- Dá para fazer um form só com a checkbox em si sendo ela mesmo o submit, ai quando clica só pega o valor dela e troca na controller, game aqui hein, gênio-->
+                        <a th:href="@{/Atualizarlembrete/{id}/{valor}(id = ${lembrete.id}, valor = ${lembrete.realizado})}"></a> <!-- Dentro da controller ver se o "valor" é verdadeiro ou falso e ai atualizar a tarefa para o valor oposto, qualquer coisa eu mando isso para um outro atualizar ou da para usar o javaScript ou eu vejo algum jeito melhor de fazer isso pela controller, já que se eu passasse para outra página de atualização só com a checkbox funfionaria (da para fazer isso no ultimo dos casos, é so por uma coisa escrita mais bonitinha q dá)-->
+                        <input type="checkbox" value=""
+                        th:value="${lembrete.id}"
+                        th:checked="${lembrete.realizado}"
+                    />
+                        </a>
+                    </td>
+
+                    </span> 
+
+                </tr>
+
+
+            </tbody>
+        </table>
+
+        <a th:href="@{/}"><button class="btn btn-danger mt-4" style="text-align: center; margin-left: 32%;">Sair</button></a>
+
+    </div>
+</body>
+
+</html>

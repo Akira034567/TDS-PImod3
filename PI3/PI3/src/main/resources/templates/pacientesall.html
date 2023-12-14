@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+
+<head>
+           
+    <meta charset="utf-8">
+            <title>Pacientes</title>
+           
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/css/css.css" media="screen" />
+       
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="margin-top: 5%;">Pacientes:</h1>
+
+        <table style="text-align: center; margin-left: 32%;">
+            <thead>
+                <tr>
+                    <th style="font-size: larger;">ID</th>
+                    <th style="font-size: larger;">Nome</th>
+                    <th style="font-size: larger;">RG</th>
+                    <th style="font-size: larger;">Data de nascimento</th>
+                    <th style="font-size: larger;">Cadastrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="paciente : ${pacientes}"> <!-- Passar no model tanto a lista de pacientes quanto o médico proveniente do clique -->
+                    <td th:text="${paciente.id}"></td>
+                    <td th:text="${paciente.nome}"></td>
+                    <td th:text="${paciente.RG}"></td>
+                    <td th:text="${paciente.dataNasc}"></td>
+                    <td>
+                        <button><a th:href="@{/pacienteMedico/{idPaciente}/{idMedico}(idPaciente = ${paciente.id}, idMedico = ${medico.id})}">Cadastrar Paciente</a></button> <!-- Por o id do médico dentro da Fk em pacientes do médico responsável om o valor de id da model na hora do get, mas tudo isso é no controller, vai ser um PUT5 na FK de "pacientes" -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/}"><button class="btn btn-danger mt-4" style="text-align: center; margin-left: 50%;">Voltar</button></a>
+
+    </div>
+</body>
+
+</html>
