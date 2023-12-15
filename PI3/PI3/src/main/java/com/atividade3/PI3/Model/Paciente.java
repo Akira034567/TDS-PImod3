@@ -12,7 +12,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import java.util.Date;
 import lombok.Data;
 
 @Data 
@@ -32,9 +31,9 @@ public class Paciente {
     @NotBlank(message="Senha obrigatória")
     private String senha;
     
-    private String dataNasc;
+    private String data_Nasc;
     
     @ManyToOne
-    @JoinColumn(name = "medicoId")
+    @JoinColumn(name = "medico_Id")
     private Medico medico;
 } 

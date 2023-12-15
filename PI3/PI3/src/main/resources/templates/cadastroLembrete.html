@@ -10,13 +10,13 @@
         <div class="container"> 
             <h1 style="margin-top: 5%;">Cadastro de Lembretes</h1>
             <hr>
-            <form action="#" th:action="@{/lembreteCadastro}" th:object="${lembrete}" method="POST" style="width: 940px; margin: 40px auto;">
+            <form action="#" th:action="@{/salvarLembrete}" th:object="${lembrete}" method="POST" style="width: 940px; margin: 40px auto;">
 
-                <input type="text" nth:field="*{descricao}" placeholder="Descrição" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <input type="text" id="descricao" th:field="*{descricao}" placeholder="Descrição" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
 
-                <input type="text" nth:field="*{dataHora}" placeholder="Data e Hora" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
-                <span class="text-danger" th:if="${#fields.hasErrors('dataHora')}" th:errors="*{dataHora}"></span>
+                <input type="text" id="dataHora" th:field="*{data_Hora}" placeholder="Data e Hora" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('data_Hora')}" th:errors="*{data_Hora}"></span>
 
                 <!-- O id já está no AutoIncremment, o valor de realizado se vc está criando logicamente é falso, da mesma maneira q seu valor default já é esse no banco de dados, e o odPaciente tem que ser setado no controller com o valor passado pela model da outra página na hora do get, ent quando o atributo vem para cá seu id já está definido com o id certo do paciente em que o médico em questão está adicionando o lembrete -->
 
@@ -31,10 +31,8 @@
                 $(document).ready(function () {
                     $('#limparForm').click(function () {
                         
-                        $("#nome").val("");
-                        $("#RG").val("");
-                        $("#endereco").val("");
-                        $("#senha").val("");
+                        $("#descricao").val("");
+                        $("#dataHora").val("");
 
                     });
                 });

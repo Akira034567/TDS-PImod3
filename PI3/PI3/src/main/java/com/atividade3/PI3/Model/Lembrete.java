@@ -30,11 +30,11 @@ public class Lembrete {
     private String descricao;
     
     @NotBlank(message="Data e hora obrigatórias") 
-    private String dataHora;
+    private String data_Hora;
     
     private Boolean realizado;
     
     @ManyToOne
-    @JoinColumn(name = "pacienteId")
+    @JoinColumn(name = "paciente_Id")
     private Paciente paciente;
 } 

@@ -17,6 +17,7 @@ public class LembreteService {
     
     public Lembrete criarLembrete(Lembrete lembrete) { 
     lembrete.setId(null);
+    lembrete.setRealizado(false);
     lembrete.setPaciente(null);
     lembreteRepository.save(lembrete); 
     return lembrete; 
@@ -25,7 +26,7 @@ public class LembreteService {
     public Lembrete atualizarLembrete(Integer lembreteId, Lembrete lembreteRequest) { 
     Lembrete lembrete = getLembreteId(lembreteId); 
     lembrete.setDescricao(lembreteRequest.getDescricao()); 
-    lembrete.setDataHora(lembreteRequest.getDataHora()); 
+    lembrete.setData_Hora(lembreteRequest.getData_Hora()); 
     lembrete.setRealizado(lembreteRequest.getRealizado());
     lembrete.setPaciente(lembreteRequest.getPaciente()); 
     lembreteRepository.save(lembrete); 

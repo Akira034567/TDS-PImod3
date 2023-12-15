@@ -27,7 +27,7 @@ public class PacienteService {
     paciente.setNome(pacienteRequest.getNome()); 
     paciente.setRG(pacienteRequest.getRG()); 
     paciente.setSenha(pacienteRequest.getSenha());
-    paciente.setDataNasc(pacienteRequest.getDataNasc());
+    paciente.setData_Nasc(pacienteRequest.getData_Nasc());
     paciente.setMedico(pacienteRequest.getMedico()); 
     pacienteRepository.save(paciente); 
     return paciente; 

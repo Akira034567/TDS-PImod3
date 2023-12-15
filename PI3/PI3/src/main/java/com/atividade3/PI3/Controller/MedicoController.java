@@ -13,11 +13,14 @@ import com.atividade3.PI3.Model.Medico;
 import com.atividade3.PI3.Model.Paciente;
 import com.atividade3.pi3.service.MedicoService;
 import com.atividade3.pi3.service.PacienteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -28,12 +31,19 @@ public class MedicoController {
     @Autowired
     MedicoService medicoService;
 
-    @GetMapping("/login12")
-    public String viewLoginPage(Model model) {
-        Paciente paciente = new Paciente();
+    @GetMapping("/cadastrarMedico")
+    public String criarMedicoForm(Model model) {
         Medico medico = new Medico();
-        model.addAttribute("usuario", paciente);
         model.addAttribute("medico", medico);
+        return "cadastroMedico";
+    }    
+        
+    @PostMapping("/salvarMedico")
+    public String salvarMedico(@Valid @ModelAttribute Medico medico) {
+        if(medico.getNome() != null){
+        medicoService.criarMedico(medico);
+        return "lembretesPaciente";
+    }
         return "login";
     }
 }

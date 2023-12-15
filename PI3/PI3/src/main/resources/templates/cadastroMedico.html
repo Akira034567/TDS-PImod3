@@ -12,16 +12,16 @@
             <hr>
             <form action="#" th:action="@{/medicoCadastro}" th:object="${medico}" method="POST" style="width: 940px; margin: 40px auto;">
 
-                <input type="text" nth:field="*{nome}" placeholder="Nome*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <input type="text" th:field="*{nome}" placeholder="Nome*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
 
-                <input type="text" nth:field="*{RG}" placeholder="RG*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <input type="text" th:field="*{RG}" placeholder="RG*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('RG')}" th:errors="*{RG}"></span>
 
-                <input type="text" nth:field="*{endereco}" placeholder="Data de nascimento" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <input type="text" th:field="*{endereco}" placeholder="Data de nascimento" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></span>
 
-                <input type="text" nth:field="*{senha}" placeholder="Senha*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <input type="text" th:field="*{senha}" placeholder="Senha*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></span>
 
             <button type="button" id="limparForm" class="btn btn-danger mt-4" style="text-align: center; margin-left: 32%;">Limpar</button>
@@ -30,7 +30,7 @@
         </div> 
     
 
-        <script src="../static/js/jquery.js"></script>
+        <script src="/js/jquery.js"></script>
             <script>
                 $(document).ready(function () {
                     $('#limparForm').click(function () {

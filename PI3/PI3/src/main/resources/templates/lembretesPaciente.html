@@ -27,30 +27,25 @@
             </thead>
             <tbody>
                 <tr th:each="lembrete : ${lembretes}">
-
-                    <span th:if="lembrete.idPaciente == ${paciente.id}"> <!-- Passar o paciente (e seu id) que efetuou o login pela model na hora do Get da página. Ainda tem q ver se esse jeito de usar o th:if funciona-->
-                    
                     <td th:text="${lembrete.id}"></td>
                     <td th:text="${lembrete.descricao}"></td>
-                    <td th:text="${lembrete.dataHora}"></td>
-                    <td> <!-- Dá para fazer um form só com a checkbox em si sendo ela mesmo o submit, ai quando clica só pega o valor dela e troca na controller, game aqui hein, gênio-->
-                        <a th:href="@{/Atualizarlembrete/{id}/{valor}(id = ${lembrete.id}, valor = ${lembrete.realizado})}"></a> <!-- Dentro da controller ver se o "valor" é verdadeiro ou falso e ai atualizar a tarefa para o valor oposto, qualquer coisa eu mando isso para um outro atualizar ou da para usar o javaScript ou eu vejo algum jeito melhor de fazer isso pela controller, já que se eu passasse para outra página de atualização só com a checkbox funfionaria (da para fazer isso no ultimo dos casos, é so por uma coisa escrita mais bonitinha q dá)-->
-                        <input type="checkbox" value=""
-                        th:value="${lembrete.id}"
-                        th:checked="${lembrete.realizado}"
-                    />
-                        </a>
+                    <td th:text="${lembrete.data_Hora}"></td>
+                    <td>
+                        <form  name="formLembreteRealizado" action="#" th:action="@{/atualizarLembrete}" th:object="${lembretea}" method="POST">
+                        <input name="realizado" type="checkbox" onChange="submit();" value="" th:value="${lembrete.realizado}" th:checked="${lembrete.realizado}"/>
+                        <input id="id" name="id" type="hidden" th:value="${lembrete.id}">
+                        <input id="descricao" name="descricao" type="hidden" th:value="${lembrete.descricao}" />
+                        <input id="data_Hora" name="data_Hora" type="hidden" th:value="${lembrete.data_Hora}" />
+                        <input id="paciente" name="paciente" type="hidden" th:field="*{paciente}" th:value="${lembrete.paciente}" /> 
+                        </form>
                     </td>
-
-                    </span> 
-
                 </tr>
 
 
             </tbody>
         </table>
 
-        <a th:href="@{/}"><button class="btn btn-danger mt-4" style="text-align: center; margin-left: 32%;">Sair</button></a>
+        <a th:href="@{/login}"><button class="btn btn-danger mt-4" style="text-align: center; margin-left: 32%;">Sair</button></a>
 
     </div>
 </body>

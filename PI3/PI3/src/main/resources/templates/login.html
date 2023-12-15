@@ -26,7 +26,11 @@
 
             <hr> 
 
-                <a th:href="@{/}" style="padding-inline: 3%; text-align: center; margin-left: 35%;">Esqueceu a senha/Fazer cadastro</a>
+        <p th:href="@{/}" style="padding-inline: 3%; text-align: center; margin-left: 35%;">
+            Esqueceu a senha/Fazer cadastro:
+            <a th:href="@{/cadastrarMedico}">Médico /</a>
+            <a th:href="@{/cadastrarPaciente}">Paciente</a>
+        </p>
 
         </div> 
 
@@ -35,8 +39,8 @@
                 $(document).ready(function () {
                     $('#limparForm').click(function () {
                         
-                        $("#usuarioLogin").val("");
-                        $("#usuarioSenha").val("");
+                        $("#nome").val("");
+                        $("#senha").val("");
 
                     });
                 });

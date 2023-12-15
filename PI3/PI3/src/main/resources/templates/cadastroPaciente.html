@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en"> 
-    <head> 
+    <head>
         <meta charset="utf-8"> 
         <title>Cadastro de Pacientes</title> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-      <link rel="stylesheet" type="text/css" href="/css/css.css" media="screen" />
-    </head> 
+      <link rel="stylesheet" type="text/css" href="/css/css.css" media="screen"/>
+    </head>
     <body> 
         <div class="container"> 
             <h1 style="margin-top: 5%;">Cadastro de Pacientes</h1>
             <hr>
-            <form action="#" th:action="@{/pacienteCadastro}" th:object="${paciente}" method="POST" style="width: 940px; margin: 40px auto;">
-
-                <input type="text" nth:field="*{nome}" placeholder="Nome*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+            <form action="#" th:action="@{/salvarPaciente}" th:object="${paciente}" method="POST" style="width: 940px; margin: 40px auto;">
+    
+                <input type="text" th:field="*{nome}" placeholder="Nome*" class="form-control mt-4 col-4" style="margin-left:32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
 
-                <input type="text" nth:field="*{RG}" placeholder="RG*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <input type="text" th:field="*{RG}" placeholder="RG*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('RG')}" th:errors="*{RG}"></span>
 
-                <input type="text" nth:field="*{dataNasc}" placeholder="Data de nascimento" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
-                <span class="text-danger" th:if="${#fields.hasErrors('dataNasc')}" th:errors="*{dataNasc}"></span>
+                <input type="text" th:field="*{data_Nasc}" placeholder="Data de nascimento" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('data_Nasc')}" th:errors="*{data_Nasc}"></span>
 
-                <input type="text" nth:field="*{senha}" placeholder="Senha*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <input type="text" th:field="*{senha}" placeholder="Senha*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></span>
 
                 <button type="button" id="limparForm" class="btn btn-danger mt-4" style="text-align: center; margin-left: 32%;">Limpar</button>
