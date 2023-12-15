@@ -32,7 +32,7 @@ public class Paciente {
     @NotBlank(message="Senha obrigatória")
     private String senha;
     
-    private Date dataNasc;
+    private String dataNasc;
     
     @ManyToOne
     @JoinColumn(name = "medicoId")
