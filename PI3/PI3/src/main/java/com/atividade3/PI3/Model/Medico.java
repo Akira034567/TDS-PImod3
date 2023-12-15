@@ -4,72 +4,30 @@
  */
 package com.atividade3.PI3.Model;
 
-import org.springframework.stereotype.Component;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
-@Component 
+@Data 
+@Entity 
+@Table(name="Medico") 
 public class Medico {
-    int id;
-    String Nome;
-    String RG;
-    String senha;
-    String endereco;
-
-    public Medico(int id, String Nome, String senha) {
-        this.id = id;
-        this.Nome = Nome;
-        this.senha = senha;
-    }
-
-    public Medico(int id, String Nome, String RG, String senha, String endereco) {
-        this.id = id;
-        this.Nome = Nome;
-        this.RG = RG;
-        this.senha = senha;
-        this.endereco = endereco;
-    }
-
-    public Medico() {
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return Nome;
-    }
-
-    public void setNome(String Nome) {
-        this.Nome = Nome;
-    }
-
-    public String getRG() {
-        return RG;
-    }
-
-    public void setRG(String RG) {
-        this.RG = RG;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+    @NotBlank(message="Nome obrigatório")
+    private String nome;
     
+    @NotBlank(message="RG obrigatório")
+    private String RG;
     
-}
+    @NotBlank(message="Senha obrigatória")
+    private String senha;
+    
+    private String endereco;
+} 

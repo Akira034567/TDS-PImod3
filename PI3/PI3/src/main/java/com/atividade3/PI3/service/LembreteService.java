@@ -4,8 +4,7 @@
  */
 package com.atividade3.pi3.service;
 import com.atividade3.PI3.Model.Lembrete;
-import com.atividade3.PI3.data.LembreteEntity;
-import com.atividade3.PI3.data.LembreteRepository;
+import com.atividade3.PI3.repository.LembreteRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,15 +15,15 @@ public class LembreteService {
     @Autowired 
     LembreteRepository lembreteRepository;
     
-    public LembreteEntity criarLembrete(LembreteEntity lembrete) { 
+    public Lembrete criarLembrete(Lembrete lembrete) { 
     lembrete.setId(null);
     lembrete.setPaciente(null);
     lembreteRepository.save(lembrete); 
     return lembrete; 
     }
     
-    public LembreteEntity atualizarLembrete(Integer lembreteId, LembreteEntity lembreteRequest) { 
-    LembreteEntity lembrete = getLembreteId(lembreteId); 
+    public Lembrete atualizarLembrete(Integer lembreteId, Lembrete lembreteRequest) { 
+    Lembrete lembrete = getLembreteId(lembreteId); 
     lembrete.setDescricao(lembreteRequest.getDescricao()); 
     lembrete.setDataHora(lembreteRequest.getDataHora()); 
     lembrete.setRealizado(lembreteRequest.getRealizado());
@@ -33,20 +32,20 @@ public class LembreteService {
     return lembrete; 
     }
     
-    public LembreteEntity getLembreteId(Integer lembreteId) { 
+    public Lembrete getLembreteId(Integer lembreteId) { 
     return lembreteRepository.findById(lembreteId).orElse(null); 
     }
     
-    public List<Lembrete> getLembretePacienteId(Integer lembreteId) { 
-    return lembreteRepository.findByPacienteId(lembreteId); 
-    } 
+    public List<Lembrete> getLembretePacienteId(Integer pacienteId) { 
+    return lembreteRepository.findByPacienteId(pacienteId); 
+    }
     
-    public List<LembreteEntity> listarTodosLembretes() { 
+    public List<Lembrete> listarTodosLembretes() { 
     return lembreteRepository.findAll(); 
     }
     
     public void deletarLembrete(Integer lembreteId) { 
-    LembreteEntity lembrete = getLembreteId(lembreteId); 
+    Lembrete lembrete = getLembreteId(lembreteId); 
     lembreteRepository.deleteById(lembrete.getId()); 
     }
 }

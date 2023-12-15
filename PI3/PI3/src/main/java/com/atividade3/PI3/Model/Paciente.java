@@ -4,97 +4,37 @@
  */
 package com.atividade3.PI3.Model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import java.util.Date;
-import org.springframework.stereotype.Component;
+import lombok.Data;
 
-@Component 
+@Data 
+@Entity 
+@Table(name="Paciente") 
 public class Paciente {
-    int id;
-    String nome;
-    String RG;
-    String senha;
-    Date dataNasc;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    
+    @NotBlank(message="Nome obrigatório")
+    private String nome;
+    
+    @NotBlank(message="RG obrigatório")
+    private String RG;
+    
+    @NotBlank(message="Senha obrigatória")
+    private String senha;
+    
+    private Date dataNasc;
     
     @ManyToOne
-    @JoinColumn(name = "Medico_responsavel_id")
-    Medico medico;
-
-    public Paciente(int id, String nome, String RG, String senha) {
-        this.id = id;
-        this.nome = nome;
-        this.RG = RG;
-        this.senha = senha;
-    }
-
-    public Paciente(int id, String nome, String RG, String senha, Date dataNasc, Medico medico) {
-        this.id = id;
-        this.nome = nome;
-        this.RG = RG;
-        this.senha = senha;
-        this.dataNasc = dataNasc;
-        this.medico = medico;
-    }
-
-    public Paciente(int id, String nome, String RG, String senha, Date dataNasc) {
-        this.id = id;
-        this.nome = nome;
-        this.RG = RG;
-        this.senha = senha;
-        this.dataNasc = dataNasc;
-    }
-
-    public Paciente() {
-    }
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getRG() {
-        return RG;
-    }
-
-    public void setRG(String RG) {
-        this.RG = RG;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Date getDataNasc() {
-        return dataNasc;
-    }
-
-    public void setDataNasc(Date dataNasc) {
-        this.dataNasc = dataNasc;
-    }
-
-    public Medico getMedico() {
-        return medico;
-    }
-
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-    }
-
-   
-}
+    @JoinColumn(name = "medicoId")
+    private Medico medico;
+} 
