@@ -24,6 +24,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -49,10 +50,11 @@ public class PacienteController {
                 for(Medico m: medicos){
                     if((m.getNome().equals(medico.getNome())) && (m.getSenha().equals(medico.getSenha()))){
                         
-                        
-                        
-                        
-                        return "cadastroMedico";
+                        List<Paciente> pacientes = pacienteService.getPacienteMedicoId(m.getId());
+                        Medico med = medicoService.getMedicoId(m.getId());
+                        model.addAttribute("pacientes", pacientes);
+                        model.addAttribute("medico", med);
+                        return "pacientes";
                     }
                 }
             } else {
@@ -72,19 +74,6 @@ public class PacienteController {
             return "erro";
     }
         
-    @PostMapping("/cadastros")
-        public String cadastroMedicoPaciente(@ModelAttribute Paciente p, Model model){
-            if("medico".equals(p.getRG())){
-                Medico medico = new Medico();
-                model.addAttribute("medico", medico);
-                return "cadastroMedico";
-            } else {
-                Paciente paciente = new Paciente();
-                model.addAttribute("paciente", paciente);
-                return "cadastroPaciente";
-            }
-    }    
-        
     @GetMapping("/cadastrarPaciente")
     public String criarPacienteForm(Model model) {
         Paciente paciente = new Paciente();
@@ -100,16 +89,26 @@ public class PacienteController {
     }
         return "login";
     }
+    
+    @GetMapping("/todosPacientes/{idMedico}")
+    public String listarTodosPacientes(@PathVariable(value = "idMedico") Integer idMedico, Model model) {
+        List<Paciente> pacientes = pacienteService.listarTodosPacientes();
+        Medico medico = medicoService.getMedicoId(idMedico);
+        model.addAttribute("pacientes", pacientes);
+        model.addAttribute("medico", medico);
+        return "pacientesall";
+    }    
+    
+    @PostMapping("/pacienteMedico/{idPaciente}/{idMedico}")
+    public String salvarPacienteMedico(@ModelAttribute("idPaciente") Paciente paciente, @ModelAttribute("idMedico") Medico medico, Model model) {
+        paciente.setMedico(medico);
+        pacienteService.atualizarPaciente(paciente.getId(), paciente);
         
-        
-        
-        
-        
-    /*@GetMapping("/lembretes")
-    public String viewLembretes(Model model) {
-        List<Lembrete> lembretes = lembreteService.getLembretePacienteId(6);
-        model.addAttribute("lembretes", lembretes);
+        List<Paciente> pacientes = pacienteService.getPacienteMedicoId(medico.getId());
+        Medico med = medicoService.getMedicoId(medico.getId());
+        model.addAttribute("pacientes", pacientes);
+        model.addAttribute("medico", med);
         return "lembretesPaciente";
-    }*/
+    }
 }
 

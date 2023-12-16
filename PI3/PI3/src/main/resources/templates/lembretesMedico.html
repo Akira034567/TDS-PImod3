@@ -29,25 +29,21 @@
             <tbody>
                 <tr th:each="lembrete : ${lembretes}">
 
-                    <span th:if="lembrete.idPaciente == ${paciente.id}"> <!-- Vem do get na model em controller, do id do Paciente que o médico clicou no botão (isso já está lá) -->
-
                     <td th:text="${lembrete.id}"></td>
                     <td th:text="${lembrete.descricao}"></td>
-                    <td th:text="${lembrete.dataHora}"></td>
+                    <td th:text="${lembrete.data_Hora}"></td>
                     <td th:checkbox="${lembrete.realizado}"></td> <!-- Pode ser q o certo seja só usar "text" ali mesmo e depois eu uso um "th:if" para mudar para "Realizado" se o valor for verdadeiro ou "Não realizado" se o valor for falso -->
 
                     <td>
-                        <button><a th:href="@{/atualizarLembrete/{id}(id = ${lembrete.id})}">Atualizar lembrete</a></button> <!-- Vai para "atualizarLembrete.html" -->
-                        <button><a th:href="@{/excluirLembrete/{id}(id = ${lembrete.id})}">Excluir lembrete</a></button> <!-- Só é realizado no controller -->
+                        <button class="btn btn-info mt-4"><a th:href="@{/atualizarLembrete/{id}(id = ${lembrete.id})}">Atualizar lembrete</a></button> <!-- Vai para "atualizarLembrete.html" -->
+                        <button class="btn btn-info mt-4"><a th:href="@{/excluirLembrete/{id}(id = ${lembrete.id})}">Excluir lembrete</a></button> <!-- Só é realizado no controller -->
                     </td>
-
-                    </span>
 
                 </tr>
             </tbody>
         </table>
 
-        <a th:href="@{/}"><button class="btn btn-danger mt-4" style="text-align: center; margin-left: 32%;">Sair</button></a>
+        <a th:href="@{/login}"><button class="btn btn-danger mt-4" style="text-align: center; margin-left: 32%;">Sair</button></a>
         <a th:href="@{/}"><button class="btn btn-info mt-4" style="text-align: center; margin-left: 20%;">Cadastrar lembrete</button></a> <!-- Vai para "cadastroLembrete.html", mandando no model o id do paciente (paciente inteiro, ou só o id dele mesmo) -->
 
     </div>

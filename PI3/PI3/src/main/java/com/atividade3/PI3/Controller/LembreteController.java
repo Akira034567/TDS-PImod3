@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -69,5 +70,41 @@ public class LembreteController {
         lembreteService.criarLembrete(lembrete);
         return "lembretesMedico";
     }
+    
+    @GetMapping("/lembretes/{id}")
+    public String lembretesPorPaciente(@PathVariable(value = "id") Integer id, Model model) {
+        List<Lembrete> lembretes = lembreteService.getLembretePacienteId(id);
+        model.addAttribute("lembretes", lembretes);
+        return "lembretesMedico";
+    }
+    
+    @GetMapping("/atualizarLembrete/{id}")
+    public String atualizarLembreteForm(@PathVariable(value = "id") Integer id, Model model) {
+        Lembrete lembrete = lembreteService.getLembreteId(id);
+        model.addAttribute("lembrete", lembrete);
+        return "atualizarLembrete";
+    }
+    
+    @PostMapping("/salvarAtualizaLembrete")
+    public String salvarFilme(@Valid @ModelAttribute("lembrete") Lembrete lembrete, Model model) {
+        lembreteService.atualizarLembrete(lembrete.getId(), lembrete);
+        
+        Paciente p = lembrete.getPaciente();
+        List<Lembrete> lembretes = lembreteService.getLembretePacienteId(p.getId());
+        model.addAttribute("lembretes", lembretes);
+        return "lembretesMedico";
+    }
+    
+    @GetMapping("/excluirLembrete/{id}")
+    public String deletarLembrete(@PathVariable(value = "id") Integer id, Model model) {
+        lembreteService.deletarLembrete(id);
+        
+        Lembrete lembrete = lembreteService.getLembreteId(id);
+        Paciente p = lembrete.getPaciente();
+        List<Lembrete> lembretes = lembreteService.getLembretePacienteId(p.getId());
+        model.addAttribute("lembretes", lembretes);
+        return "lembretesMedico";
+    }
+    
 }
 
