@@ -42,8 +42,8 @@ public class MedicoController {
     public String salvarMedico(@Valid @ModelAttribute Medico medico) {
         if(medico.getNome() != null){
         medicoService.criarMedico(medico);
-        return "lembretesPaciente";
-    }
+        return "/login";
+        }
         return "login";
     }
 }

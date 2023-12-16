@@ -10,7 +10,7 @@
         <div class="container"> 
             <h1 style="margin-top: 5%;">Cadastro de Médicos</h1>
             <hr>
-            <form action="#" th:action="@{/medicoCadastro}" th:object="${medico}" method="POST" style="width: 940px; margin: 40px auto;">
+            <form action="#" th:action="@{/salvarMedico}" th:object="${medico}" method="POST" style="width: 940px; margin: 40px auto;">
 
                 <input type="text" th:field="*{nome}" placeholder="Nome*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
@@ -18,7 +18,7 @@
                 <input type="text" th:field="*{RG}" placeholder="RG*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('RG')}" th:errors="*{RG}"></span>
 
-                <input type="text" th:field="*{endereco}" placeholder="Data de nascimento" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
+                <input type="text" th:field="*{endereco}" placeholder="Endereço" class="form-control mt-4 col-4" style="margin-left: 32%;"/>
                 <span class="text-danger" th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></span>
 
                 <input type="text" th:field="*{senha}" placeholder="Senha*" class="form-control mt-4 col-4" style="margin-left: 32%;"/>

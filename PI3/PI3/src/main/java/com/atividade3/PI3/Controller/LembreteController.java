@@ -58,23 +58,32 @@ public class LembreteController {
         return "lembretesPaciente";
     }
     
-    @GetMapping("/criarLembrete")
-    public String criarFilmeForm(Model model) {
+    @GetMapping("/criarLembrete/{pacienteId}")
+    public String criarFilmeForm(@PathVariable(value = "pacienteId") Integer id, Model model) {
         Lembrete lembrete = new Lembrete();
         model.addAttribute("lembrete", lembrete);
+        model.addAttribute("paciente", pacienteService.getPacienteId(id));
         return "cadastroLembrete";
     }
     
-    @PostMapping("/salvarLembrete")
-    public String salvarLembrete(@Valid @ModelAttribute("lembrete") Lembrete lembrete) {
-        lembreteService.criarLembrete(lembrete);
+    @PostMapping("/salvarLembrete/{pacienteId}")
+    public String salvarLembrete(@Valid @ModelAttribute("lembrete") Lembrete lembrete, @ModelAttribute("pacienteId") Integer pacienteId, Model model) {
+        Paciente paciente = pacienteService.getPacienteId(pacienteId);
+        lembrete.setPaciente(paciente);
+        lembreteService.criarLembreteId(lembrete);
+        
+        List<Lembrete> lembretes = lembreteService.getLembretePacienteId(pacienteId);
+        model.addAttribute("lembretes", lembretes);
+        model.addAttribute("paciente", paciente);
         return "lembretesMedico";
     }
     
     @GetMapping("/lembretes/{id}")
     public String lembretesPorPaciente(@PathVariable(value = "id") Integer id, Model model) {
         List<Lembrete> lembretes = lembreteService.getLembretePacienteId(id);
+        Paciente paciente = pacienteService.getPacienteId(id);
         model.addAttribute("lembretes", lembretes);
+        model.addAttribute("paciente", paciente);
         return "lembretesMedico";
     }
     
@@ -92,6 +101,7 @@ public class LembreteController {
         Paciente p = lembrete.getPaciente();
         List<Lembrete> lembretes = lembreteService.getLembretePacienteId(p.getId());
         model.addAttribute("lembretes", lembretes);
+        model.addAttribute("paciente", p);
         return "lembretesMedico";
     }
     
@@ -99,11 +109,7 @@ public class LembreteController {
     public String deletarLembrete(@PathVariable(value = "id") Integer id, Model model) {
         lembreteService.deletarLembrete(id);
         
-        Lembrete lembrete = lembreteService.getLembreteId(id);
-        Paciente p = lembrete.getPaciente();
-        List<Lembrete> lembretes = lembreteService.getLembretePacienteId(p.getId());
-        model.addAttribute("lembretes", lembretes);
-        return "lembretesMedico";
+        return "redirect:/login";
     }
     
 }

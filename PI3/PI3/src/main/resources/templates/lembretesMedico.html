@@ -44,7 +44,7 @@
         </table>
 
         <a th:href="@{/login}"><button class="btn btn-danger mt-4" style="text-align: center; margin-left: 32%;">Sair</button></a>
-        <a th:href="@{/}"><button class="btn btn-info mt-4" style="text-align: center; margin-left: 20%;">Cadastrar lembrete</button></a> <!-- Vai para "cadastroLembrete.html", mandando no model o id do paciente (paciente inteiro, ou só o id dele mesmo) -->
+        <a th:href="@{/criarLembrete/{pacienteId}(pacienteId = ${paciente.id})}"><button class="btn btn-info mt-4" style="text-align: center; margin-left: 20%;">Cadastrar lembrete</button></a> <!-- Vai para "cadastroLembrete.html", mandando no model o id do paciente (paciente inteiro, ou só o id dele mesmo) -->
 
     </div>
 </body>

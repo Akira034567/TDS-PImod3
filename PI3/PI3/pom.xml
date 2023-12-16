@@ -14,7 +14,7 @@
 	<name>PI3</name>
 	<description>TDS-UC15mod3.Atividade3</description>
         
-        <!-- <packaging>war</packaging> -->
+        <packaging>war</packaging>
         
 	<properties>
 		<java.version>17</java.version>
@@ -72,7 +72,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-                <!-- <finalName>${artifactId}</finalName> -->
+                <finalName>${artifactId}</finalName>
 	</build>
 
 </project>

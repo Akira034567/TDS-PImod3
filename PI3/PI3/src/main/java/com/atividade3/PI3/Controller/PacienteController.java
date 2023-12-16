@@ -100,15 +100,16 @@ public class PacienteController {
     }    
     
     @PostMapping("/pacienteMedico/{idPaciente}/{idMedico}")
-    public String salvarPacienteMedico(@ModelAttribute("idPaciente") Paciente paciente, @ModelAttribute("idMedico") Medico medico, Model model) {
+    public String salvarPacienteMedico(@ModelAttribute("idPaciente") Integer idPaciente, @ModelAttribute("idMedico") Integer idMedico, Model model) {
+        Paciente paciente = pacienteService.getPacienteId(idPaciente);
+        Medico medico = medicoService.getMedicoId(idMedico);
         paciente.setMedico(medico);
         pacienteService.atualizarPaciente(paciente.getId(), paciente);
         
-        List<Paciente> pacientes = pacienteService.getPacienteMedicoId(medico.getId());
-        Medico med = medicoService.getMedicoId(medico.getId());
-        model.addAttribute("pacientes", pacientes);
-        model.addAttribute("medico", med);
-        return "lembretesPaciente";
+        List<Lembrete> lembretes = lembreteService.getLembretePacienteId(idPaciente);
+        model.addAttribute("lembretes", lembretes);
+        model.addAttribute("paciente", paciente);
+        return "lembretesMedico";
     }
 }
 

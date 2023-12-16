@@ -23,6 +23,13 @@ public class LembreteService {
     return lembrete; 
     }
     
+    public Lembrete criarLembreteId(Lembrete lembrete) { 
+    lembrete.setId(null);
+    lembrete.setRealizado(false);
+    lembreteRepository.save(lembrete); 
+    return lembrete; 
+    }
+    
     public Lembrete atualizarLembrete(Integer lembreteId, Lembrete lembreteRequest) { 
     Lembrete lembrete = getLembreteId(lembreteId); 
     lembrete.setDescricao(lembreteRequest.getDescricao()); 

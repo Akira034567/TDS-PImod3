@@ -27,19 +27,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="paciente : ${pacientes}"> <!-- Passar no model tanto a lista de pacientes quanto o médico proveniente do clique -->
+                <tr th:each="paciente : ${pacientes}">
                     <td th:text="${paciente.id}"></td>
                     <td th:text="${paciente.nome}"></td>
                     <td th:text="${paciente.RG}"></td>
-                    <td th:text="${paciente.dataNasc}"></td>
+                    <td th:text="${paciente.data_Nasc}"></td>
                     <td>
-                        <button><a th:href="@{/pacienteMedico/{idPaciente}/{idMedico}(idPaciente = ${paciente.id}, idMedico = ${medico.id})}">Cadastrar Paciente</a></button> <!-- Por o id do médico dentro da Fk em pacientes do médico responsável om o valor de id da model na hora do get, mas tudo isso é no controller, vai ser um PUT5 na FK de "pacientes" -->
+                    <form action="#" th:action="@{/pacienteMedico/{idPaciente}/{idMedico}(idPaciente = ${paciente.id}, idMedico = ${medico.id})}" th:object="${medico}" method="POST">
+                        <input type="hidden" th:field="*{id}"/>
+                        <button type="submit" class="btn btn-info mt-4" style="text-align: center; margin-left: 10%;">Cadastrar Paciente</button> <!-- Por o id do médico dentro da Fk em pacientes do médico responsável om o valor de id da model na hora do get, mas tudo isso é no controller, vai ser um PUT5 na FK de "pacientes" -->
+                    </form>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <a th:href="@{/}"><button class="btn btn-danger mt-4" style="text-align: center; margin-left: 50%;">Voltar</button></a>
+        <a th:href="@{/login}"><button class="btn btn-danger mt-4" style="text-align: center; margin-left: 50%;">Voltar</button></a>
 
     </div>
 </body>
